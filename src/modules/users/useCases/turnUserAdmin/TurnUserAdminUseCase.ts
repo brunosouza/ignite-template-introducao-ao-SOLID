@@ -9,6 +9,12 @@ class TurnUserAdminUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
   execute({ user_id }: IRequest): User {
+    const user = this.usersRepository.findById(user_id);
+    Object.assign(user, {
+      admin: true,
+      updated_at: new Date(),
+    });
+    return user;
     // Complete aqui
   }
 }
